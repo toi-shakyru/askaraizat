@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;" lang="ru">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="​Асқар&amp;Айзат, ​Telegram">
+    <meta name="description" content="">
+    <title>Главная</title>
+    
+    <!-- Nicepage стильдері -->
+    <link rel="stylesheet" href="nicepage.css" media="screen">
+    <link rel="stylesheet" href="index.css" media="screen">
+    
+    <!-- Иконкалар үшін FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Nicepage скрипттері (Таймер осылар арқылы жұмыс істейді) -->
+    <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
+    <meta name="generator" content="Nicepage 8.3.6, nicepage.com">   
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Roboto:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&amp;family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&amp;family=Lobster:wght@400">
+    
+    <style>
+        /* RSVP ЖӘНЕ ТІЛЕКТЕР ФОРМАСЫНЫҢ СТИЛЬДЕРІ */
+        :root {
+            --dark-blue: #003366;
+            --gold: #D4AF37;
+            --bg-cream: #FDFBF5;
+        }
+
+        .rsvp-wrapper, .wish-wrapper {
+            font-family: 'Open Sans', sans-serif;
+            max-width: 448px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            padding: 32px;
+            border-radius: 16px;
+            border: 1px solid #f3f4f6;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .rsvp-title, .wish-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 300;
+            color: #1F5A2F;
+            margin: 0 0 8px 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .rsvp-subtitle, .wish-subtitle {
+            font-size: 10px;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0 0 32px 0;
+        }
+
+        .rsvp-form, .wish-form {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .rsvp-input, .wish-input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 12px 16px;
+            text-align: center;
+            color: #111111;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+
+        .rsvp-input:focus, .wish-input:focus { border-bottom-color: #1F5A2F; }
+        .rsvp-input::placeholder, .wish-input::placeholder { color: #9ca3af; }
+
+        .wish-textarea {
+            resize: none;
+            text-align: left;
+        }
+
+        .rsvp-radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .rsvp-radio-label {
+            cursor: pointer;
+            display: block;
+            position: relative;
+        }
+
+        .rsvp-radio-input {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .rsvp-radio-box {
+            display: block;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+            background-color: #ffffff;
+            color: #374151;
+            font-size: 14px;
+            font-weight: 300;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .rsvp-radio-input:checked + .rsvp-radio-box {
+            border-color: #1F5A2F;
+            background-color: #1F5A2F;
+            color: #ffffff;
+        }
+
+        .rsvp-submit-btn, .wish-btn {
+            width: 100%;
+            margin-top: 24px;
+            padding: 16px;
+            background-color: #1F5A2F;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .rsvp-submit-btn:hover, .wish-btn:hover { opacity: 0.9; }
+        .rsvp-submit-btn:disabled, .wish-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+
+        /* Тілектер тізімі (скролл) */
+        .wishes-container {
+            max-height: 250px;
+            overflow-y: auto;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding-right: 8px;
+        }
+        .wishes-container::-webkit-scrollbar { width: 4px; }
+        .wishes-container::-webkit-scrollbar-thumb { background-color: #e5e7eb; border-radius: 4px; }
+
+        .wish-item {
+            padding: 16px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            background-color: #fafafa;
+        }
+        .wish-item-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: #1F5A2F;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .wish-item-text {
+            font-size: 14px;
+            color: #4b5563;
+            line-height: 1.5;
+            font-weight: 300;
+        }
+        .wish-loading-text { font-size: 12px; color: #9ca3af; font-style: italic; }
+
+        /* МОДАЛЬДЫ ТЕРЕЗЕ */
+        .wish-modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: none; 
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .wish-modal-content {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 448px;
+            padding: 32px;
+            border-radius: 16px;
+            position: relative;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            box-sizing: border-box;
+        }
+
+        .wish-modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #9ca3af;
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.3s;
+        }
+        .wish-modal-close:hover { color: #111111; }
+
+        /* ҚАЛҚЫМАЛЫ БАТЫРМАЛАР (Тілек және Музыка) */
+        .floating-action-btn {
+            position: fixed; right: 20px; z-index: 50; display: flex; align-items: center; justify-content: center; gap: 10px;
+            border-radius: 50px; color: #1F5A2F; background: rgba(253, 251, 245, 0.95);
+            backdrop-filter: blur(8px); border: 2px solid #1F5A2F; box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            transition: all 0.4s ease; cursor: pointer;
+        }
+        .floating-action-btn:hover { transform: translateY(-5px) scale(1.05); background: #1F5A2F; color: #ffffff; }
+        
+        .wish-btn-fixed { bottom: 30px; padding: 12px 22px; }
+        
+        .music-btn-fixed { 
+            bottom: 90px; 
+            width: 46px; height: 46px; 
+            padding: 0;
+            border-radius: 50%; /* Дөңгелек батырма */
+        }
+        
+        /* Музыка қосылған кездегі айналу анимациясы */
+        .spin { animation: spin 4s linear infinite; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+
+<body data-home-page="Главная.html" data-home-page-title="Главная" data-path-to-root="./" class="u-body u-clearfix u-xl-mode" data-lang="ru">
+    
+    <!-- Музыка аудио файлы (Мұнда өз файлыңыздың атын жазыңыз: music.mp3) -->
+    <audio id="bgMusic" loop>
+        <source src="1233.m4a" type="audio/mpeg">
+    </audio>
+
+    <!-- Музыка батырмасы -->
+    <button onclick="toggleMusic()" class="floating-action-btn music-btn-fixed">
+        <i id="musicIcon" class="fas fa-music"></i>
+    </button>
+
+    <!-- Тілек жазу батырмасы -->
+    <button onclick="openWishModal()" class="floating-action-btn wish-btn-fixed">
+        <i class="fas fa-pen-nib"></i>
+        <span class="text-xs font-bold uppercase tracking-wider">Тілек жазу</span>
+    </button>
+
+    <!-- БАСТЫ СЕКЦИЯ -->
+    <section class="u-clearfix u-gradient u-section-1" id="block-1">
+        <div class="u-clearfix u-sheet u-sheet-1">
+            <img class="custom-expanded u-image u-image-default u-image-1" src="images/58a7a4122b53c02151aa1e3664be0fb5.jpg" alt="" data-image-width="736" data-image-height="981">
+            <h1 class="u-align-center-xs u-custom-font u-font-playfair-display u-text u-text-default u-text-1" data-animation-name="customAnimationIn" data-animation-duration="1000" data-animation-delay="0"><span class="u-text-white"> Асқар</span>
+                <br><span class="u-text-palette-3-light-1">&amp;</span>
+                <br><span class="u-text-body-alt-color">Айзат</span>
+            </h1>
+        </div>
+    </section>
+
+    <!-- ШАҚЫРУ ТЕКСТІ -->
+    <section class="u-clearfix u-section-2" id="block-2">
+        <div class="u-clearfix u-sheet u-sheet-1">
+            <h3 class="u-align-center u-custom-font u-font-playfair-display u-text u-text-custom-color-5 u-text-default u-text-1"> Құрметті қонақтар!</h3>
+            <p class="u-align-center u-text u-text-default-lg u-text-default-md u-text-default-sm u-text-default-xl u-text-2"> Сіз(дер)ді ұлымыз <span style="font-weight: 700;" class="u-text-custom-color-6">Асқар</span> мен<br>келініміз <span class="u-text-custom-color-6" style="font-weight: 700;">Айзаттың</span>
+                <br>шаңырақ көтеру тойына арналған<br>салтанатты ақ дастарханымыздың<br>қадірлі қонағы болуға шақырамыз.
+            </p>
+        </div>
+    </section>
+
+    <!-- ТОЙ ТУРАЛЫ АҚПАРАТ ЖӘНЕ ТАЙМЕР (СІЗДІҢ ТҮПНҰСҚА КӨДЫҢЫЗ ҚАЙТАРЫЛДЫ) -->
+    <section class="skrollable u-clearfix u-image u-section-3" id="block-3" data-image-width="651" data-image-height="1676">
+        <div class="u-clearfix u-sheet u-sheet-1">
+            <h3 class="u-align-center u-custom-font u-font-playfair-display u-text u-text-default u-text-1">Той ж​айлы </h3>
+            <p class="u-align-center u-text u-text-default-lg u-text-default-md u-text-default-sm u-text-default-xl u-text-2">Той иесі:<br></p>
+            <p class="u-align-center u-custom-font u-font-lobster u-text u-text-custom-color-3 u-text-default u-text-3"> Салия</p>
+            <p class="u-align-center u-text u-text-default-lg u-text-default-md u-text-default-sm u-text-default-xl u-text-4"> Тойдың басталуына қалды:</p>
+            <p class="u-align-center u-text u-text-default-lg u-text-default-md u-text-default-sm u-text-default-xl u-text-5"> "Duman Grand Hall" мейрамханасы</p>
+            <p class="u-align-center u-text u-text-default-lg u-text-default-md u-text-default-sm u-text-default-xl u-text-6"> Алматы қ., Қайнарбұлақ көшесі 3, </p>
+            <div class="u-border-1 u-border-grey-dark-1 u-opacity u-opacity-30 u-shape u-shape-bottom u-shape-left u-shape-line u-shape-right u-shape-1"></div>
+            <h3 class="u-align-center u-custom-font u-font-playfair-display u-text u-text-default u-text-7">Тойдың басталу уақыты: </h3>
+            <h3 class="u-align-center u-custom-font u-font-playfair-display u-text u-text-default u-text-8">2 тамыз 2026 жыл<br>18:00 </h3>
+            <h3 class="u-align-center u-custom-font u-font-playfair-display u-text u-text-default-lg u-text-default-md u-text-default-sm u-text-default-xl u-text-9">Тойдың мекен-жайы:</h3>
+            
+            <div class="u-countdown u-countdown-1" data-timer-id="6496" data-type="to-date" data-target-date="Sun, 02 Aug 2026 13:00:36 GMT" data-for="everyone" data-direction="down" data-count-animation="slide" data-target-number="100" data-frequency="1s" data-start-time="Tue, 31 Mar 2026 15:05:35 GMT" data-time-left="750m" data-after-count="none" data-redirect-url="https://">
+                <div class="u-countdown-text u-custom-font u-font-playfair-display u-hidden u-countdown-text-1">Text</div>
+                <div class="u-countdown-wrapper u-spacing-10">
+                    <div class="u-countdown-item u-countdown-years u-hidden u-spacing-5">
+                        <div class="u-countdown-counter u-custom-font u-font-georgia u-spacing-0 u-countdown-counter-1"><div class="u-countdown-number">0</div><div class="u-countdown-number u-hidden">0</div></div>
+                        <div class="u-countdown-label u-countdown-label-1">Years</div>
+                    </div>
+                    <div class="u-countdown-separator u-custom-font u-font-georgia u-hidden u-countdown-separator-1">:</div>
+                    <div class="u-countdown-days u-countdown-item u-spacing-5">
+                        <div class="u-countdown-counter u-custom-font u-font-georgia u-spacing-0 u-countdown-counter-2"><div class="u-countdown-number">1</div><div class="u-countdown-number">2</div><div class="u-countdown-number">3</div></div>
+                        <div class="u-countdown-label u-countdown-label-2">Days</div>
+                    </div>
+                    <div class="u-countdown-separator u-custom-font u-font-georgia u-countdown-separator-2">:</div>
+                    <div class="u-countdown-hours u-countdown-item u-spacing-5">
+                        <div class="u-countdown-counter u-custom-font u-font-georgia u-spacing-0 u-countdown-counter-3"><div class="u-countdown-number">2</div><div class="u-countdown-number">1</div></div>
+                        <div class="u-countdown-label u-countdown-label-3">Hours</div>
+                    </div>
+                    <div class="u-countdown-separator u-custom-font u-font-georgia u-countdown-separator-3">:</div>
+                    <div class="u-countdown-item u-countdown-minutes u-spacing-5">
+                        <div class="u-countdown-counter u-custom-font u-font-georgia u-spacing-0 u-countdown-counter-4"><div class="u-countdown-number">0</div><div class="u-countdown-number">0</div></div>
+                        <div class="u-countdown-label u-countdown-label-4">Minutes</div>
+                    </div>
+                    <div class="u-countdown-separator u-custom-font u-font-georgia u-countdown-separator-4">:</div>
+                    <div class="u-countdown-item u-countdown-seconds u-spacing-5">
+                        <div class="u-countdown-counter u-custom-font u-font-georgia u-spacing-0 u-countdown-counter-5"><div class="u-countdown-number">5</div><div class="u-countdown-number">9</div></div>
+                        <div class="u-countdown-label u-countdown-label-5">Seconds</div>
+                    </div>
+                    <div class="u-countdown-separator u-custom-font u-font-georgia u-hidden u-countdown-separator-5">:</div>
+                    <div class="u-countdown-item u-countdown-numbers u-hidden u-spacing-5">
+                        <div class="u-countdown-counter u-custom-font u-font-georgia u-spacing-0 u-countdown-counter-6"><div class="u-countdown-number">0</div><div class="u-countdown-number">1</div><div class="u-countdown-number">0</div><div class="u-countdown-number">0</div></div>
+                        <div class="u-countdown-label u-countdown-label-6">Items</div>
+                    </div>
+                </div>
+                <div class="u-countdown-message u-hidden">
+                    <p>Sorry, the time is up.</p>
+                </div>
+            </div>
+            
+            <div class="u-border-1 u-border-grey-dark-1 u-opacity u-opacity-30 u-shape u-shape-bottom u-shape-left u-shape-line u-shape-right u-shape-2"></div>
+            <a href="https://2gis.kz/almaty/firm/70000001098699679/76.611217%2C43.221544" class="u-btn u-btn-round u-button-style u-custom-color-6 u-hover-custom-color-4 u-radius u-btn-1" target="_blank"> &nbsp;Карта арқылы ашу </a>
+        </div>
+    </section>
+
+    <!-- АҚ ТІЛЕКТЕР БЛОГЫ -->
+    <div class="wish-wrapper">
+        <h2 class="wish-title">Ақ тілектер</h2>
+        <p class="wish-subtitle">Жас жұбайларға лебізіңізді білдіріңіз</p>
+        
+        <div id="wishesLoading" class="wish-loading-text">Жүктелуде...</div>
+        <div id="wishesContainer" class="wishes-container" style="display: none;"></div>
+        <div id="noWishes" class="wish-loading-text" style="display: none; margin-bottom: 24px;">Алғашқы тілек білдіруші болыңыз...</div>
+        
+        <button onclick="openWishModal()" class="wish-btn">Тілек жазу</button>
+    </div>
+
+    <!-- ТОЙҒА КЕЛЕСІЗ БЕ? (RSVP) БЛОГЫ -->
+    <div class="rsvp-wrapper">
+        <h2 class="rsvp-title">Тойға келесіз бе?</h2>
+        <p class="rsvp-subtitle">Жауабыңызды күтеміз</p>
+        
+        <form id="rsvpForm" class="rsvp-form">
+            <input type="hidden" name="formType" value="rsvp">
+            <input type="text" name="name" placeholder="Аты-жөніңіз" required class="rsvp-input">
+            
+            <div class="rsvp-radio-group">
+                <label class="rsvp-radio-label">
+                    <input type="radio" name="status" value="Келемін" class="rsvp-radio-input" required>
+                    <span class="rsvp-radio-box">Келемін</span>
+                </label>
+                <label class="rsvp-radio-label">
+                    <input type="radio" name="status" value="Жұбайыммен келемін" class="rsvp-radio-input">
+                    <span class="rsvp-radio-box">Жұбайыммен келемін</span>
+                </label>
+                <label class="rsvp-radio-label">
+                    <input type="radio" name="status" value="Келе алмаймын" class="rsvp-radio-input">
+                    <span class="rsvp-radio-box">Келе алмаймын</span>
+                </label>
+            </div>
+            <button type="submit" class="rsvp-submit-btn">Жіберу</button>
+        </form>
+    </div>
+
+    <!-- TELEGRAM БЛОГЫ -->
+<section class="u-clearfix u-container-align-center u-valign-top-xs u-section-6" id="block-5">
+        <div class="u-custom-color-6 u-expanded-width u-radius u-shape u-shape-round u-shape-1"></div>
+        <div class="u-align-center u-container-align-center-lg u-container-align-center-md u-container-align-center-sm u-container-align-center-xl u-container-style u-group u-radius u-shape-round u-white u-group-1">
+            <div class="u-container-layout u-valign-middle-lg u-valign-middle-md u-valign-middle-sm u-valign-middle-xl u-container-layout-1">
+                <h2 class="u-align-center u-custom-font u-font-playfair-display u-text u-text-1"> Telegram</h2>
+                <p class="u-align-center u-text u-text-2"> Тойдың барлық суреттері мен видеолары осында жүктеледі:</p>
+                <a href="https://t.me/+U18LqKx6St1jNmUy" target="_blank" class="u-active-black u-align-center u-border-active-black u-border-hover-black u-border-none u-btn u-btn-round u-button-style u-custom-color-5 u-hover-custom-color-3 u-radius u-text-active-white u-text-body-alt-color u-text-hover-white u-btn-1"><span class="u-file-icon u-icon u-text-white"><img src="images/5618940-74786fc9.png" alt=""></span>&nbsp;Каналға өту</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="u-align-center u-clearfix u-custom-color-6 u-footer u-footer" id="footer">
+        <div class="u-clearfix u-sheet u-sheet-1">
+            <h3 class="u-custom-font u-font-playfair-display u-headline u-text u-text-default u-text-palette-3-light-2 u-text-1">
+                <a href="/"> Асқар &amp; Айзат</a>
+            </h3>
+            <p class="u-text u-text-default u-text-2"> Бақытты болыңыздар!</p>
+        </div>
+    </footer>
+
+    <!-- МОДАЛЬДЫ ТЕРЕЗЕ (Жасырын тұрады) -->
+    <div id="wishModal" class="wish-modal-overlay">
+        <div class="wish-modal-content">
+            <button class="wish-modal-close" onclick="closeWishModal()">×</button>
+            <h2 class="wish-title">Тілек жазу</h2>
+            <p class="wish-subtitle">✨ Үздік тілекке сыйлық беріледі ✨</p>
+            <form id="wishForm" class="wish-form">
+                <input type="hidden" name="formType" value="wish">
+                <input type="text" name="name" placeholder="Аты-жөніңіз" required class="wish-input">
+                <textarea name="message" placeholder="Ақ тілегіңіз..." rows="4" required class="wish-input wish-textarea"></textarea>
+                <button type="submit" class="wish-btn">Жіберу</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ТАЗАЛАНҒАН ЖӘНЕ БІРІКТІРІЛГЕН JAVASCRIPT ЛОГИКАСЫ -->
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyUlCXNaN038YdOHAVQHga-bRSsh8_D2pv6jVKOZGpV5MGg_K0jhllFWhIi8KQyoFBi/exec';
+
+        // 1. Музыка қосу/өшіру
+        const bgMusic = document.getElementById('bgMusic');
+        const musicIcon = document.getElementById('musicIcon');
+        let isPlaying = false;
+
+        function toggleMusic() {
+            if (isPlaying) { 
+                bgMusic.pause(); 
+                musicIcon.classList.replace('fa-pause', 'fa-music'); 
+                musicIcon.parentElement.classList.remove('spin');
+            } else { 
+                bgMusic.play(); 
+                musicIcon.classList.replace('fa-music', 'fa-pause'); 
+                musicIcon.parentElement.classList.add('spin'); 
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // 2. Модальды терезені басқару
+        function openWishModal() {
+            document.getElementById('wishModal').style.display = 'flex';
+        }
+        function closeWishModal() {
+            document.getElementById('wishModal').style.display = 'none';
+        }
+
+        // 3. Тілектерді жүктеп алу
+        function loadWishes() {
+            const container = document.getElementById('wishesContainer');
+            const loading = document.getElementById('wishesLoading');
+            const noWishes = document.getElementById('noWishes');
+
+            loading.style.display = 'block';
+            container.style.display = 'none';
+            noWishes.style.display = 'none';
+
+            fetch(scriptURL + '?t=' + Date.now(), { redirect: 'follow' })
+                .then(res => res.json())
+                .then(wishes => {
+                    loading.style.display = 'none';
+                    if (!wishes || wishes.length === 0 || !Array.isArray(wishes)) {
+                        noWishes.style.display = 'block';
+                    } else {
+                        container.innerHTML = ''; 
+                        container.style.display = 'flex'; 
+                        wishes.forEach(w => {
+                            if(w.name && w.message) {
+                                const wishEl = document.createElement('div'); 
+                                wishEl.className = 'wish-item';
+                                wishEl.innerHTML = `
+                                    <div class="wish-item-name">${w.name}</div>
+                                    <div class="wish-item-text">${w.message}</div>
+                                `;
+                                container.appendChild(wishEl);
+                            }
+                        });
+                    }
+                })
+                .catch(err => {
+                    loading.innerHTML = 'Тілектерді жүктеу мүмкін болмады.';
+                });
+        }
+
+        window.addEventListener('load', loadWishes);
+
+        // 4. Тілек жіберу формасы
+        const wishForm = document.getElementById('wishForm');
+        if (wishForm) {
+            wishForm.addEventListener('submit', e => {
+                e.preventDefault();
+                const btn = wishForm.querySelector('button[type="submit"]'); 
+                const originalText = btn.innerText; 
+                
+                btn.innerText = "КҮТЕ ТҰРЫҢЫЗ..."; 
+                btn.disabled = true;
+                
+                fetch(scriptURL, { method: 'POST', body: new FormData(wishForm) })
+                .then(() => { 
+                    alert("Рахмет! Тілегіңіз қабылданды."); 
+                    wishForm.reset(); 
+                    btn.innerText = originalText; 
+                    btn.disabled = false;
+                    closeWishModal(); 
+                    setTimeout(loadWishes, 1500); 
+                })
+                .catch(err => {
+                    alert("Хабарлама жіберілді!"); 
+                    wishForm.reset(); 
+                    btn.innerText = originalText; 
+                    btn.disabled = false;
+                    closeWishModal(); 
+                    setTimeout(loadWishes, 1500); 
+                });
+            });
+        }
+
+        // 5. Тойға келу (RSVP) формасы
+        const rsvpForm = document.getElementById('rsvpForm');
+        if (rsvpForm) {
+            rsvpForm.addEventListener('submit', e => {
+                e.preventDefault(); 
+                const btn = rsvpForm.querySelector('button[type="submit"]'); 
+                const originalText = btn.innerText; 
+                
+                btn.innerText = "КҮТЕ ТҰРЫҢЫЗ..."; 
+                btn.disabled = true;
+                
+                fetch(scriptURL, { method: 'POST', body: new FormData(rsvpForm) })
+                .then(() => { 
+                    alert("Рахмет! Жауабыңыз жіберілді."); 
+                    rsvpForm.reset(); 
+                    btn.innerText = originalText; 
+                    btn.disabled = false;
+                })
+                .catch(err => {
+                    alert("Хабарлама жіберілді!"); 
+                    rsvpForm.reset(); 
+                    btn.innerText = originalText; 
+                    btn.disabled = false;
+                });
+            });
+        }
+    </script>
+</body>
+</html>
